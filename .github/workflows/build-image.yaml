@@ -29,13 +29,15 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get upgrade -y
-          sudo DEBUG=1 ./build_complete.sh ${{ matrix.board }} compress_img=1 quiet=1
-
+          sudo apt install wget -y
+          wget https://b2.crosbreaker.dev/file/crosbreaker/ChromeOS/shims/raw-shims/nissa-raw.bin
+          git clone https://github.com/kazuiton/nanoboot&&cd nanoboot&&mkdir -p root
+          sudo ./build.sh image.bin raw-nissa.bin root 
       - name: upload img
         uses: actions/upload-artifact@v4
         with:
           name: shimboot_${{ matrix.board }}
-          path: data/shimboot_${{ matrix.board }}.bin
+          path: data/${{ matrix.board }}.bin
           compression-level: 7
   
       - name: create release

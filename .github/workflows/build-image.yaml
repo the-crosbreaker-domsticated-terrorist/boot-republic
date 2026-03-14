@@ -1,12 +1,12 @@
 name: build-image
 run-name: Build the shimboot disk image for all boards
- workflow_dispatch:
+on:
+  workflow_dispatch:
     inputs:
       tag:
         description: 'Release tag'
-        required: false
+        required: true
         type: string
-
 jobs:
   build:
     permissions:

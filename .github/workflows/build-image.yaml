@@ -35,8 +35,9 @@ jobs:
           sudo apt-get update
           sudo apt-get upgrade -y
           sudo apt install wget -y
+          sudo apt install curl -y
           wget https://b2.crosbreaker.dev/file/crosbreaker/ChromeOS/shims/raw-shims/nissa-raw.bin
-          git clone https://github.com/kazuiton/nanoboot&&cd nanoboot&&mkdir -p root
+          git clone https://github.com/kazuiton/nanoboot && cd nanoboot && mkdir -p root
           sudo ./build.sh image.bin raw-nissa.bin root 
       - name: upload img
         uses: actions/upload-artifact@v4
